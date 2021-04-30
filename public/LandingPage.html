@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            #outer{
+                width: 700px;
+                height: 450px;
+                background-image: url('images/mainBackground.jpg');
+                background-repeat: no-repeat;
+                background-size: auto;
+                display: flex;
+                justify-content: space-around;
+                align-items:flex-end
+
+            }
+            #inner{
+                position:absolute;
+            }
+            #btnStart{
+                width: 130px;
+                height: 50px;
+                margin-bottom: 40px;
+                margin-right: 20px;
+                border-radius: 50px;
+                background-color:crimson;
+                font-size: 20pt;
+                font-weight: bold;
+                color: aliceblue;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="outer">
+            <div id="inner">
+                <form action="/api/users/choose" method="GET">
+                    <input type="button" value="Start" id="btnStart">
+                </form> 
+            </div>
+        </div>
+                   
+    </body>
+</html>
