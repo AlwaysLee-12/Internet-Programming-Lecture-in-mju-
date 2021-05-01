@@ -2,6 +2,138 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('#chooseBtn').click(function(){
+                    var arr=document.getElementsByName("food[]");
+                    var results=[];
+                    var j=0;
+                    for(var i=0;i<arr.length;i++){
+                        if(arr[i].checked){
+                            results[j]=$(arr[i]).val();
+                            j++;
+                        }
+                    }
+                    console.log(results);
+                    $.ajax({
+                        url:'/api/users/choose',
+                        method:'POST',
+                        contentType :   "application/x-www-form-urlencoded; charset=UTF-8",
+                        data:{"list":results},
+                        traditional:true,
+                        success:function(data){   
+                            console.log("success");
+                            console.log(data);
+                        },
+                        error:function(request,status,error){
+                            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                        }
+                    })
+            })
+        })
+        </script>
+
+        <style>
+            #main{
+                width: 550px;
+                height: 250px;
+                background-color: #dfdbca;
+            }
+            header{
+                color:chocolate;
+            }
+            #chooseBtn{
+                width: 80px;
+                height: 30px;
+                margin-top: 20px;
+                border-radius: 10px;
+            }
+            #footDiv{
+                margin-left: 200px;
+            }
+        </style>
     </head>
-    <body><h1>메뉴선택!</h1></body>
+    <body>
+        <div id="main">
+            <header>
+                <h1>음식을 선택해주세요(16개 선택)</h1>
+            </header>
+            <main>
+                <div id="a">
+                    <input type="checkbox" id="ddukboki" name="food[]" value="ddukboki">
+                    <label>떡볶이</label>
+                    <input type="checkbox" id="gimbab" name="food[]" value="gimbab">
+                    <label>김밥&nbsp;&nbsp;&nbsp;</label>
+                    <input type="checkbox" id="pasta" name="food[]" value="pasta">
+                    <label>파스타</label>
+                    <input type="checkbox" id="dakgalbi" name="food[]" value="dakgalbi">
+                    <label>닭갈비</label>
+                    <input type="checkbox" id="jogaegui" name="food[]" value="jogaegui">
+                    <label>조개구이&nbsp;&nbsp;&nbsp;</label>
+                    <input type="checkbox" id="gimchijjigae" name="food[]" value="gimchijjigae">
+                    <label>김치찌개</label>
+                </div>
+                <div id="b">
+                    <input type="checkbox" id="chicken" name="food[]" value="chicken">
+                    <label>치킨&nbsp;&nbsp;&nbsp;</label>
+                    <input type="checkbox" id="ramen" name="food[]" value="ramen">
+                    <label>라면&nbsp;&nbsp;&nbsp;</label>
+                    <input type="checkbox" id="gugbab" name="food[]" value="gugbab">
+                    <label>국밥&nbsp;&nbsp;&nbsp;</label>
+                    <input type="checkbox" id="bokumbab" name="food[]" value="bokumbab">
+                    <label>볶음밥</label>
+                    <input type="checkbox" id="gopchang" name="food[]" value="gopchang">
+                    <label>곱창&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input type="checkbox" id="duinjangjjigae" name="food[]" value="duinjangjjigae">
+                    <label>된장찌개</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="pizza" name="food[]" value="pizza">
+                    <label>피자&nbsp;&nbsp;&nbsp;</label>
+                    <input type="checkbox" id="jajangmen" name="food[]" value="jajangmen">
+                    <label>짜장면</label>
+                    <input type="checkbox" id="samgupsal" name="food[]" value="samgupsal">
+                    <label>삼겹살</label>
+                    <input type="checkbox" id="samgeutang" name="food[]" value="samgeutang">
+                    <label>삼계탕</label>
+                    <input type="checkbox" id="donkaz" name="food[]" value="donkaz">
+                    <label>돈까스&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input type="checkbox" id="bibimbab" name="food[]" value="bibimbab">
+                    <label>비빔밥</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="nangmen" name="food[]" value="nangmen">
+                    <label>냉면&nbsp;&nbsp;&nbsp;</label>
+                    <input type="checkbox" id="jjambbong" name="food[]" value="jjambbong">
+                    <label>짬뽕&nbsp;&nbsp;&nbsp;</label>
+                    <input type="checkbox" id="galbi" name="food[]" value="galbi"> 
+                    <label>갈비&nbsp;&nbsp;&nbsp;</label>
+                    <input type="checkbox" id="ssalguksu" name="food[]" value="ssalguksu">
+                    <label>쌀국수</label>
+                    <input type="checkbox" id="chobab" name="food[]" value="chobab">
+                    <label>초밥&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input type="checkbox" id="galbijjim" name="food[]" value="galbijjim">
+                    <label>갈비찜</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="maratang" name="food[]" value="maratang">
+                    <label>마라탕</label>
+                    <input type="checkbox" id="tangsuuk" name="food[]" value="tangsuuk">
+                    <label>탕수육</label>
+                    <input type="checkbox" id="ukgaejang" name="food[]" value="ukgaejang">
+                    <label>육개장</label>
+                    <input type="checkbox" id="kalguksu" name="food[]" value="kalguksu">
+                    <label>칼국수</label>
+                    <input type="checkbox" id="omerice" name="food[]" value="omerice">
+                    <label>오므라이스</label>
+                    <input type="checkbox" id="steak" name="food[]" value="steak">
+                    <label>스테이크</label>
+                </div>
+                <div id="footDiv">
+                    <input type="button" value="선택완료" id="chooseBtn">     
+                </div>
+            </main>
+        </div>
+    </body>
 </html>
