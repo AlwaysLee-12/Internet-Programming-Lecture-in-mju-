@@ -1,14 +1,18 @@
 const express=require('express');
 const bodyParser=require('body-parser');
+const path=require('path')
 const app=express();
 const port=8000;
+var arr=[];
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
-app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname,'public'));
 app.engine('html', require('ejs').renderFile);
+app.set('view engine','html');
+
 
 app.get('/', function(req,res) {
     res.sendFile(__dirname + "/public/LandingPage.html")
@@ -19,11 +23,12 @@ app.get('/api/users/choose',function(req,res){
 })
 
 app.post('/api/users/choose',function(req,res){
-    console.log(1111)
-    var arr=req.body.list;
-    console.log(arr);
+    arr=req.body.list;
     res.send({"Success":true});
-    res.render('/public/WorldCup.html',{arr});
+})
+
+app.get('/api/users/worldcup',function(req,res){
+    res.render('WorldCup',{list:arr});
 })
 
 app.listen(port,console.log(`Server start at ${port}`));

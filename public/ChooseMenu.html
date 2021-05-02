@@ -15,21 +15,25 @@
                             j++;
                         }
                     }
-                    console.log(results);
-                    $.ajax({
+                    if(results.length!=16){
+                        alert("16가지 메뉴를 선택해주세요!")
+                    }else{
+                        $.ajax({
                         url:'/api/users/choose',
                         method:'POST',
                         contentType :   "application/x-www-form-urlencoded; charset=UTF-8",
                         data:{"list":results},
                         traditional:true,
                         success:function(data){   
-                            console.log("success");
                             console.log(data);
+                            alert("메뉴 선택 완료!!")
+                            location.href='/api/users/worldcup'
                         },
                         error:function(request,status,error){
                             alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
                         }
                     })
+                    }      
             })
         })
         </script>
