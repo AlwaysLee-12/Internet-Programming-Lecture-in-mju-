@@ -5,13 +5,51 @@
         <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
         <script>
             window.onload=function(){
+                var container=document.getElementsByClassName('container'); 
+                var num=16;
                 var menu='<%=list%>';
+                var img1 = document.createElement("img");
+                var img2 = document.createElement("img");
+                
                 menuArr=menu.split(",");
+                for(var i=0;i<16;i++){
+                    menuArr[i]+=".png";
+                }
+                console.log(menuArr);
+                for(var i=0;i<4;i++){
+                    container.item(0).innerHTML=`<h1>${num}강</h1>`;
+                    for(var j=0;num-1;j++){
+                        img1.setAttribute("src", `/images/${menuArr[j]}`);
+                        img1.setAttribute("height", "30");
+                        img1.setAttribute("width", "30");
+                        container.item(1).appendChild(img1);
+                        img2.setAttribute("src", `/images/${menuArr[j+1]}`);
+                        img2.setAttribute("height", "30");
+                        img2.setAttribute("width", "30");
+                        container.item(2).appendChild(img2);
+                    }
+                    num/=2;
+                }
             }
             
         </script>
+        <style>
+            .container{
+                display: grid;
+            }
+        </style>
     </head>
     <body>
-        <h1>월드컵!!!</h1>
+        <div class="container">
+            <div class="item">
+                
+            </div>
+            <div class="item"> 
+                
+            </div>
+            <div class="item"> 
+
+            </div>
+        </div>
     </body>
 </html>
