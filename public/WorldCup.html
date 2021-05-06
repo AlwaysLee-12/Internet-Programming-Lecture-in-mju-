@@ -2,53 +2,81 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
         <script>
             window.onload=function(){
-                var container=document.getElementsByClassName('container'); 
+                var tournament;
+                var firstimg;
+                var secondimg
+                var changeImage;
                 var num=16;
                 var menu='<%=list%>';
-                var img1 = document.createElement("img");
-                var img2 = document.createElement("img");
-                
+                var img1 = document.createElement('IMG');
+                var img2 = document.createElement('IMG');
+
+                tournament=document.getElementById('tournament');
+                firstimg=document.getElementById('firstimg');
+                secondimg=document.getElementById('secondimg');
+
                 menuArr=menu.split(",");
                 for(var i=0;i<16;i++){
                     menuArr[i]+=".png";
                 }
-                console.log(menuArr);
-                for(var i=0;i<4;i++){
-                    container.item(0).innerHTML=`<h1>${num}강</h1>`;
-                    for(var j=0;num-1;j++){
-                        img1.setAttribute("src", `/images/${menuArr[j]}`);
-                        img1.setAttribute("height", "30");
-                        img1.setAttribute("width", "30");
-                        container.item(1).appendChild(img1);
-                        img2.setAttribute("src", `/images/${menuArr[j+1]}`);
-                        img2.setAttribute("height", "30");
-                        img2.setAttribute("width", "30");
-                        container.item(2).appendChild(img2);
-                    }
-                    num/=2;
-                }
+                console.log(menuArr);                       
+                      
+                tournament.innerHTML=`<h1>${num}강</h1>`;
+                img1.setAttribute("src",`/images/${menuArr[0]}`);
+                img1.style.width = '200px';
+                img1.style.height = '200px';
+                firstimg.appendChild(img1);
+                img2.setAttribute("src",`/images/${menuArr[1]}`);
+                img2.style.width = '200px%';
+                img2.style.height = '200px';
+                secondimg.appendChild(img2);
+                num/=2;                     
             }
-            
         </script>
         <style>
-            .container{
+            #container{
                 display: grid;
+                grid-template-rows: 2;
+                grid-template-columns: 3;
+                column-gap: 40px;
+            }
+            #tournament{
+                grid-row: 1;
+                grid-column: 2;
+                text-align: center;
+            }
+            #firstimg{
+                grid-row: 2;
+                grid-column: 1;
+                text-align: right;
+            }
+            #VS{
+                grid-row: 2;
+                grid-column: 2;
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
+                
+            }
+            #secondimg{
+                grid-row: 2;
+                grid-column: 3;
+                text-align: left;
             }
         </style>
     </head>
     <body>
-        <div class="container">
-            <div class="item">
-                
+        <div id="container">
+            <div id="tournament">
             </div>
-            <div class="item"> 
-                
+            <div id="firstimg"> 
             </div>
-            <div class="item"> 
-
+            <div id="VS">
+                <h2>VS</h2> 
+            </div>
+            <div id="secondimg"> 
             </div>
         </div>
     </body>
