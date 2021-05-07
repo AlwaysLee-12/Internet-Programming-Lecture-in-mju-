@@ -3,7 +3,7 @@ const bodyParser=require('body-parser');
 const path=require('path')
 const app=express();
 const port=8000;
-var arr=[];
+var menuList=[];
 var todaymenu;
 
 app.use(express.static('public'));
@@ -24,12 +24,12 @@ app.get('/api/users/choose',function(req,res){
 })
 
 app.post('/api/users/choose',function(req,res){
-    arr=req.body.list;
+    menuList=req.body.list;
     res.send({"Success":true});
 })
 
 app.get('/api/users/worldcup',function(req,res){
-    res.render('WorldCup',{list:arr});
+    res.render('WorldCup',{list:menuList});
 })
 
 app.post('/api/users/todayMenu',function(req,res){
