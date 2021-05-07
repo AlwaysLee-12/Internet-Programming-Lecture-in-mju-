@@ -4,6 +4,7 @@ const path=require('path')
 const app=express();
 const port=8000;
 var arr=[];
+var todaymenu;
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:true}));
@@ -29,6 +30,15 @@ app.post('/api/users/choose',function(req,res){
 
 app.get('/api/users/worldcup',function(req,res){
     res.render('WorldCup',{list:arr});
+})
+
+app.post('/api/users/todayMenu',function(req,res){
+    todaymenu=req.body.menu;
+    res.send({"Success":true});
+})
+
+app.get('/api/users/todayMenu',function(req,res){
+    res.render('FinalView',{menu:todaymenu});
 })
 
 app.listen(port,console.log(`Server start at ${port}`));

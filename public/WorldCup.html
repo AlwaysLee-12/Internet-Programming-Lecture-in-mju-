@@ -2,13 +2,21 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
         <script>
+            var tourna=16
+            var num=0;
+            var idxNum=0;
+            var tempImg=[];
+            var menuArr;
+            var proceed=0;
+            var proceed2=0;
+
             window.onload=function(){
                 var tournament;
                 var firstimg;
                 var secondimg
                 var changeImage;
-                var num=16;
                 var menu='<%=list%>';
                 var img1 = document.createElement('IMG');
                 var img2 = document.createElement('IMG');
@@ -21,18 +29,83 @@
                 for(var i=0;i<16;i++){
                     menuArr[i]+=".png";
                 }
+                menuArr.sort(function(a,b){return 0.5-Math.random()});
+                arr=menuArr;
                 console.log(menuArr);                       
-                      
-                tournament.innerHTML=`<h1>${num}강</h1>`;
+                
+                tournament.innerHTML=`<h1>${tourna}강</h1>`;
                 img1.setAttribute("src",`/images/${menuArr[0]}`);
                 img1.style.width = '200px';
                 img1.style.height = '200px';
+                img1.setAttribute("id",'first');
                 firstimg.appendChild(img1);
                 img2.setAttribute("src",`/images/${menuArr[1]}`);
                 img2.style.width = '200px%';
                 img2.style.height = '200px';
-                secondimg.appendChild(img2);
-                num/=2;                     
+                img2.setAttribute("id",'second');
+                secondimg.appendChild(img2);                  
+            }
+
+            showImg=function(num){ 
+                console.log(proceed2)
+                document.getElementById('first').src=`/images/${menuArr[num]}`;
+                document.getElementById('second').src=`/images/${menuArr[num+1]}`;
+                proceed2++;
+            }
+
+            procedure=function(n){
+                if(proceed2<16){
+                    proceed++;
+                    if(n==0){
+                        tempImg[idxNum++]=menuArr[num];
+                    }else{
+                        tempImg[idxNum++]=menuArr[num+1];
+                    }
+                    num+=2;
+
+                    showImg(num);
+
+                    if(proceed==menuArr.length/2){
+                        for(var i=0;i<tempImg.length;i++){
+                            menuArr[i]=tempImg[i];
+                            tempImg[i]=null;
+                        }
+                        menuArr.splice(proceed);
+                        proceed=0;
+                        num=0;
+                        idxNum=0;
+                        tourna/=2;
+                        if(tourna==4){
+                            document.getElementById('tournament').innerHTML=`<h1>준결승전</h1>`
+                        }else if(tourna==2){
+                            document.getElementById('tournament').innerHTML=`<h1>결승전</h1>`
+                        }else{
+                            document.getElementById('tournament').innerHTML=`<h1>${tourna}강</h1>`
+                        }
+                        showImg(num);
+                    }
+                }else{
+                    if(n==0){
+                        tempImg[0]=menuArr[num];
+                    }else{
+                        tempImg[0]=menuArr[num+1];
+                    }
+                    console.log(tempImg[0]);
+                    alert("메뉴 선정 완료!!");
+                    $.ajax({
+                        url:'/api/users/todayMenu',
+                        method:'POST',
+                        contentType :   "application/x-www-form-urlencoded; charset=UTF-8",
+                        data:{"menu":tempImg[0]},
+                        traditional:true,
+                        success:function(data){   
+                            location.href='/api/users/todayMenu'
+                        },
+                        error:function(request,status,error){
+                            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                        }
+                    })
+                }
             }
         </script>
         <style>
@@ -71,12 +144,12 @@
         <div id="container">
             <div id="tournament">
             </div>
-            <div id="firstimg"> 
+            <div id="firstimg" onClick="procedure(0)"> 
             </div>
             <div id="VS">
                 <h2>VS</h2> 
             </div>
-            <div id="secondimg"> 
+            <div id="secondimg" onclick="procedure(1)"> 
             </div>
         </div>
     </body>
