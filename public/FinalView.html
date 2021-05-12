@@ -3,14 +3,149 @@
     <head>
         <meta charset="UTF-8">
         <script>
-            var menu='<%=menu%>';
-            alert(menu);
+            let menu='<%=menu%>';
+
+            window.onload=function(){
+                let img = document.createElement('IMG');
+                let menuImg=document.getElementById('menuImg');
+                let menuName=document.getElementById('menuName');
+
+                img.setAttribute("src",`/images/${menu}`);
+                img.style.width = '200px';
+                img.style.height = '200px';
+                menuImg.appendChild(img);
+
+                switch(menu){
+                    case 'bibimbab.png':
+                        menuName.innerHTML='<h2>비빔밥</h2>';
+                        break; 
+                    case 'bokumbab.png':
+                        menuName.innerHTML='<h2>볶음밥</h2>';
+                        break; 
+                    case 'ddukboki.png':
+                        menuName.innerHTML='<h2>떡볶이</h2>';
+                        break;
+                    case 'gimbab.png':
+                        menuName.innerHTML='<h2>김밥</h2>';
+                        break;
+                    case 'pasta.png':
+                        menuName.innerHTML='<h2>파스타</h2>';
+                        break;
+                    case 'dakgalbi.png':
+                        menuName.innerHTML='<h2>닭갈비</h2>';
+                        break;
+                    case 'jogaegui.png':
+                        menuName.innerHTML='<h2>조개구이</h2>';
+                        break;
+                    case 'gimchijjigae.png':
+                        menuName.innerHTML='<h2>김치찌개</h2>';
+                        break;
+                    case 'chicken.png':
+                        menuName.innerHTML='<h2>치킨</h2>';
+                        break;
+                    case 'ramen.png':
+                        menuName.innerHTML='<h2>라면</h2>';
+                        break;
+                    case 'gugbab.png':
+                        menuName.innerHTML='<h2>국밥</h2>';
+                        break;
+                    case 'gopchang.png':
+                        menuName.innerHTML='<h2>곱창</h2>';
+                        break;
+                    case 'duinjangjjigae.png':
+                        menuName.innerHTML='<h2>된장찌개</h2>';
+                        break;
+                    case 'pizza.png':
+                        menuName.innerHTML='<h2>피자</h2>';
+                        break;
+                    case 'jajangmen.png':
+                        menuName.innerHTML='<h2>짜장면</h2>';
+                        break;
+                    case 'samgupsal.png':
+                        menuName.innerHTML='<h2>삼겹살</h2>';
+                        break;
+                    case 'samgeutang.png':
+                        menuName.innerHTML='<h2>삼계탕</h2>';
+                        break;
+                    case 'donkaz.png':
+                        menuName.innerHTML='<h2>돈까스</h2>';
+                        break;
+                    case 'nangmen.png':
+                        menuName.innerHTML='<h2>냉면</h2>';
+                        break;
+                    case 'jjambbong.png':
+                        menuName.innerHTML='<h2>짬뽕</h2>';
+                        break;
+                    case 'galbi.png':
+                        menuName.innerHTML='<h2>갈비</h2>';
+                        break;
+                    case 'ssalguksu.png':
+                        menuName.innerHTML='<h2>쌀국수</h2>';
+                        break;
+                    case 'chobab.png':
+                        menuName.innerHTML='<h2>초밥</h2>';
+                        break;
+                    case 'galbijjim.png':
+                        menuName.innerHTML='<h2>갈비찜</h2>';
+                        break;
+                    case 'maratang.png':
+                        menuName.innerHTML='<h2>마라탕</h2>';
+                        break;
+                    case 'tangsuuk.png':
+                        menuName.innerHTML='<h2>탕수육</h2>';
+                        break;
+                    case 'ukgaejang.png':
+                        menuName.innerHTML='<h2>육개장</h2>';
+                        break;
+                    case 'kalguksu.png':
+                        menuName.innerHTML='<h2>칼국수</h2>';
+                        break;
+                    case 'omerice.png':
+                        menuName.innerHTML='<h2>오므라이스</h2>';
+                        break;
+                    case 'steak.png':
+                        menuName.innerHTML='<h2>스테이크</h2>';
+                        break;
+                }
+            }
         </script>
         <style>
-
+            body{
+                background-color:#dfdbca;
+            }  
+            #menuText{
+                margin-left: 10px;
+                color:gray;
+            }
+            #subContainer{
+                width: 250px;
+                height: 290px;
+                background-color:rgb(224,224,224);
+                border-radius: 30px;
+            }
+            #menuImg{
+                grid-row: 2;
+                grid-column: 1;
+                text-align: center;
+            }
+            #menuName{
+                text-align: center;
+                color:gray;
+                border: 1px solid black;
+                border-left: 1px black;
+                border-right: 1px black;
+            }
         </style>
     </head>
     <body>
-        <h1>마지막 페이지!!</h1>
+        <div id="container">
+            <div id="menuText" >
+                <h1>오늘의 점심 메뉴</h1>
+            </div>
+            <div id="subContainer">
+                <div id="menuImg"></div>
+                <div id="menuName"></div>
+            </div>
+        </div>
     </body>
 </html>

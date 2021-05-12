@@ -6,10 +6,10 @@
         <script>
             $(document).ready(function(){
                 $('#chooseBtn').click(function(){
-                    var arr=document.getElementsByName("food[]");
-                    var results=[];
-                    var j=0;
-                    for(var i=0;i<arr.length;i++){
+                    let arr=document.getElementsByName("food[]");
+                    let results=[];
+                    let j=0;
+                    for(let i=0;i<arr.length;i++){
                         if(arr[i].checked){
                             results[j]=$(arr[i]).val();
                             j++;

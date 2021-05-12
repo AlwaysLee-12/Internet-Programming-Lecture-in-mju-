@@ -13,20 +13,20 @@
             var proceed2=0;
 
             window.onload=function(){
-                var tournament;
-                var firstimg;
-                var secondimg
-                var changeImage;
-                var menu='<%=list%>';
-                var img1 = document.createElement('IMG');
-                var img2 = document.createElement('IMG');
+                let tournament;
+                let firstimg;
+                let secondimg
+                let changeImage;
+                let menu='<%=list%>';
+                let img1 = document.createElement('IMG');
+                let img2 = document.createElement('IMG');
 
                 tournament=document.getElementById('tournament');
                 firstimg=document.getElementById('firstimg');
                 secondimg=document.getElementById('secondimg');
 
                 menuArr=menu.split(",");
-                for(var i=0;i<16;i++){
+                for(let i=0;i<16;i++){
                     menuArr[i]+=".png";
                 }
                 menuArr.sort(function(a,b){return 0.5-Math.random()});
@@ -90,7 +90,6 @@
                     }else{
                         tempImg[0]=menuArr[num+1];
                     }
-                    console.log(tempImg[0]);
                     alert("메뉴 선정 완료!!");
                     $.ajax({
                         url:'/api/users/todayMenu',
