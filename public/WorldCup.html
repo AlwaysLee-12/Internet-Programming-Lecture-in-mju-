@@ -4,13 +4,13 @@
         <meta charset="UTF-8">
         <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
         <script>
-            var tourna=16
-            var num=0;
-            var idxNum=0;
-            var tempImg=[];
-            var menuArr;
-            var proceed=0;
-            var proceed2=0;
+            let tourna=16
+            let num=0;
+            let idxNum=0;
+            let tempImg=[];
+            let menuArr;
+            let proceed=0;
+            let proceed2=0;
 
             window.onload=function(){
                 let tournament;
@@ -47,7 +47,6 @@
             }
 
             showImg=function(num){ 
-                console.log(proceed2)
                 document.getElementById('first').src=`/images/${menuArr[num]}`;
                 document.getElementById('second').src=`/images/${menuArr[num+1]}`;
                 proceed2++;
