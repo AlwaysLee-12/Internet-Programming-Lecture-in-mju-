@@ -6,15 +6,19 @@
             let menu='<%=menu%>';
 
             window.onload=function(){
+                //이미지 태그 생성
                 let img = document.createElement('IMG');
+                //이미지와 이미지 이름을 받아옴
                 let menuImg=document.getElementById('menuImg');
                 let menuName=document.getElementById('menuName');
 
+                //최종 선택된 메뉴의 이미지 출력
                 img.setAttribute("src",`/images/${menu}`);
                 img.style.width = '200px';
                 img.style.height = '200px';
                 menuImg.appendChild(img);
 
+                //최종 선택된 메뉴의 이름 출력
                 switch(menu){
                     case 'bibimbab.png':
                         menuName.innerHTML='<h2>비빔밥</h2>';

@@ -6,29 +6,36 @@
         <script>
             $(document).ready(function(){
                 $('#chooseBtn').click(function(){
+                    //메뉴 정보 배열로 받아옴
                     let arr=document.getElementsByName("food[]");
                     let results=[];
                     let j=0;
+                    //선택된 메뉴 생성한 results 배열에 삽입
                     for(let i=0;i<arr.length;i++){
                         if(arr[i].checked){
                             results[j]=$(arr[i]).val();
                             j++;
                         }
                     }
+                    //메뉴를 16가지 선택하지 않았을 경우 예외처리
                     if(results.length!=16){
                         alert("16가지 메뉴를 선택해주세요!")
-                    }else{
+                    }
+                    //메뉴 16가지 선택 완료시
+                    else{
+                        //해당 url로 post요청. json 형식으로 선택된 메뉴가 담긴 배열을 보냄
                         $.ajax({
                         url:'/api/users/choose',
                         method:'POST',
                         contentType :   "application/x-www-form-urlencoded; charset=UTF-8",
                         data:{"list":results},
                         traditional:true,
+                        //통신이 성공적으로 이루어졌다면, 음식 월드텁 화면으로 아동
                         success:function(data){   
-                            console.log(data);
                             alert("메뉴 선택 완료!!")
                             location.href='/api/users/worldcup'
                         },
+                        //통신 시 에러가 발생했으면, 에러 처리
                         error:function(request,status,error){
                             alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
                         }
